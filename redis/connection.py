@@ -1035,7 +1035,7 @@ class ConnectionPool(object):
                 except (AttributeError, ValueError):
                     pass
 
-            if url.scheme == 'rediss':
+            if url.scheme == 'rediss' and 'connection_class' not in kwargs:
                 url_options['connection_class'] = SSLConnection
         else:
             valid_schemes = ', '.join(('redis://', 'rediss://', 'unix://'))
